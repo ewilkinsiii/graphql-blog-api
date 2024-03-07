@@ -15,6 +15,7 @@ class GraphqlController < ApplicationController
     Rails.logger.info "Logged in user: #{session&.user&.email}"
     context = {
       current_user: session&.user,
+      session_id: session&.id,
       time: Time.now
     }
     result = GraphqlBlogApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
