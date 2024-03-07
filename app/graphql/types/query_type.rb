@@ -27,5 +27,30 @@ module Types
     def test_field
       "Hello World!"
     end
+
+    field :login, String, null: true, description: "Login a user" do
+      argument :email, String, required: true
+      argument :password, String, required: true
+    end
+
+    def login(email:, password:)
+      if user = User.find_by(email: email)&.authenticate(password)
+         user.sessions.create.token
+      end
+    end
+
+    field :current_user,  Types::UserType, null: true, description: "The currently logged in user"
+
+    def current_user
+      context[:current_user]
+    end
+
+    field :logout, Boolean, null: true, description: "Logout the current user"
+
+    def logout
+      Session.find(context[:session_id]).destroy
+    end
   end
 end
+
+
