@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_08_000030) do
     t.bigint "user_id", null: false
     t.string "title"
     t.text "body"
-    t.integer "published"
+    t.integer "status"
     t.integer "read"
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
