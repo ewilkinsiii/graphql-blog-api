@@ -12,6 +12,12 @@ class Types::ArticleType < Types::BaseObject
   def author
     context[:current_user]
   end
+
+  field :errors, [Types::ErrorType], null: true
+
+  def errors
+    object.errors.map { |e| { field_name: e.attribute, errors: object.errors[e.attribute] } }
+  end
 end
 
 class Types::ArticleInputType < GraphQL::Schema::InputObject

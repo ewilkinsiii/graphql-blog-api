@@ -11,5 +11,14 @@ module Types
       existing = Article.where(id: article[:id]).first
       existing&.update article.to_h
     end
+
+    field :delete_article, Boolean, null: false, description: "Delete an article" do
+      argument :id, ID, required: true
+    end
+
+    def delete_article(id:)
+      Article.where(id: id).destroy_all
+      true
+    end
   end
 end
