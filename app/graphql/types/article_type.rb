@@ -16,8 +16,9 @@ end
 
 class Types::ArticleInputType < GraphQL::Schema::InputObject
     graphql_name "ArticleInput"
-    description "All the attributes for an article"
+    description "All the attributes needed to create/update an article"
 
+    argument :id, ID, required: false
     argument :title, String, required: false
     argument :body, String, required: false
     argument :status, Types::StatusType, required: false
