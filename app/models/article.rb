@@ -3,6 +3,7 @@ class Article < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  validates :user, presence: true
   validates :title, presence: true
   validates :body, presence: true
   validates :status, presence: true
